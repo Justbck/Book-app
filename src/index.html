@@ -19,16 +19,117 @@
 </head>
 
 <body>
+
   <!-- Start your project here-->
-  <div class="container">
-    <div class="d-flex justify-content-center align-items-center" style="height: 100vh">
-      <div class="text-center">
-        <img src="https://mdbootstrap.com/img/logo/mdb-transparent-250px.png" style="width: 250px; height: 90px;" />
-        <h5 class="pt-3">Thank you for using our product. We're glad you're with us.</h5>
-        <p class="pb-5">MDB Team</p>
+  <nav class="navbar navbar-expand-lg">
+   
+  </nav>
+
+
+    <div class="row justify-content-center title-row">
+      <div class="col">
+        <p class="title text-center"> Lista Książek </p>
       </div>
+
     </div>
+
+    <div class="container mt-5">
+
+    <form id="book-form">
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="title">Tytuł</label>
+            <input type="text" id="title" class="form-control">
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+            <label for="author">Autor</label>
+            <input type="text" id="author" class="form-control">
+        </div>
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="genre">Gatunek</label>
+      </div>
+
+        <div class="form-group mx-sm-3 mb-2">
+          <select class="form-select" aria-label="Default select example" id="genre">
+            <option selected>  </option>
+            <option value="Kryminał">Kryminał</option>
+            <option value="Sci-fi">Sci-fi</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Poezja">Poezja</option>
+            <option value="Dramat">Dramat</option>
+            <option value="Nauki Ścisłe">Nauki Ścisłe</option>
+          </select>
+        </div>
+
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="priority">Priorytet</label>
+          <select class="form-select" aria-label="Default select example" id="priority">
+            <option selected></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+
+        <div class="row">
+        <input  type="submit" value="Dodaj" class="btn add mx-auto mt-3">
+        </div>
+        <div class="row mt-3 search ">
+          <col>
+            <input type="text" class="table-filter form-control mt-5" placeholder="Szukaj" class="form-control" data-table="order-table"></input>
+        </col>
+
+        
+        </div>
+    
+      </form>
+
+
+  
+
+  <div class="container mt-6 table-responsive">
+    <table class="table order-table  table-striped mt-2" id="table">
+        <thead>
+            <tr>
+                <th>Tytuł</th>
+                <th>Autor</th>
+                <th>Gatunek</th>
+                <th>Priorytet</th>
+                <th>Edytuj</th>
+                <th>Zapisz</th>
+                <th>Usuń</th>
+            </tr>
+        </thead>
+        <tbody id="book-list"></tbody>
+      </table>
+
+
+    </div>
+
+
+</div>
+
+<div class="footer">
+<div class="row">
+  <div class="col autor emp">
+    <p>Autor projektu. </p>
   </div>
+</div>
+<div class="row">
+  <div class="col autor name">
+    <p>Justyna Bućko</p>
+  </div>
+</div>
+<div class="row">
+  <div class="col autor web">
+    <p>http://justyna-bucko.pl/</p>
+  </div>
+</div>
+</div>
+
+
+<script src="script.js"></script>
   <!-- End your project here-->
 
 </body>
