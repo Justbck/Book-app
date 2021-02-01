@@ -6,6 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <title>MDB Webpack Starter</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/pdfmake.min.js" integrity="sha512-HLbtvcctT6uyv5bExN/qekjQvFIl46bwjEq6PBvFogNfZ0YGVE+N3w6L+hGaJsGPWnMcAQ2qK8Itt43mGzGy8Q==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/vfs_fonts.js" integrity="sha512-vv3EN6dNaQeEWDcxrKPFYSFba/kgm//IUnvLPMPadaUf5+ylZyx4cKxuc4HdBf0PPAlM7560DV63ZcolRJFPqA==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js" integrity="sha512-ELgdXEUQM5x+vB2mycmnSCsiDZWQYXKwlzh9+p+Hff4f5LA+uf0w2pOp3j7UAuSAajxfEzmYZNOOLQuiotrt9Q==" crossorigin="anonymous"></script>
+
   <!-- Favicon -->
   <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
   <!-- Font Awesome -->
@@ -21,21 +25,29 @@
 <body>
 
   <!-- Start your project here-->
-  <nav class="navbar navbar-expand-lg">
+  <div class="page">
+    <nav class="navbar navbar-expand-lg">
    
-  </nav>
+    </nav>
+    <div class="container mt-5">
+
+      
+  
 
 
     <div class="row justify-content-center title-row">
       <div class="col">
-        <p class="title text-center"> Lista Książek </p>
+        <h1 class="title text-center"> Lista Książek  </h1>
+        <p class=" text-center">twoja wirtualna biblioteka</p>
+
       </div>
 
     </div>
 
-    <div class="container mt-5">
+
 
     <form id="book-form">
+
         <div class="form-group mx-sm-3 mb-2">
             <label for="title">Tytuł</label>
             <input type="text" id="title" class="form-control">
@@ -58,6 +70,31 @@
             <option value="Dramat">Dramat</option>
             <option value="Nauki Ścisłe">Nauki Ścisłe</option>
           </select>
+
+          <div class="row mt-4">
+            <div class="col-8 mt-2">
+              <input type="text" class="form-control" id="val">
+            </div>
+            <div class="col-4 mt-2">
+              <button class="btn add-genre btn " onclick="insertValue();">Dodaj kategorie</button>
+            </div>
+          </div>
+          
+          <script>
+              
+              function insertValue()
+              {
+                  var select = document.getElementById("genre"),
+                      txtVal = document.getElementById("val").value,
+                      newOption = document.createElement("OPTION"),
+                      newOptionVal = document.createTextNode(txtVal);
+               
+                  newOption.appendChild(newOptionVal);
+                  select.insertBefore(newOption,select.lastChild);
+              }
+              
+          </script>
+  
         </div>
 
         <div class="form-group mx-sm-3 mb-2">
@@ -73,14 +110,13 @@
         </div>
 
         <div class="row">
-        <input  type="submit" value="Dodaj" class="btn add mx-auto mt-3">
+          <input type="submit" value="Dodaj" class="btn add mx-auto mt-3">
         </div>
-        <div class="row mt-3 search ">
-          <col>
-            <input type="text" class="table-filter form-control mt-5" placeholder="Szukaj" class="form-control" data-table="order-table"></input>
-        </col>
 
-        
+        <div class="row mt-3 search justify-content-end">
+          <div class="col">
+            <input type="text" class="table-filter form-control mt-5" placeholder="Szukaj..." class="form-control" data-table="order-table"></input>
+          </div>
         </div>
     
       </form>
@@ -92,10 +128,10 @@
     <table class="table order-table  table-striped mt-2" id="table">
         <thead>
             <tr>
-                <th>Tytuł</th>
-                <th>Autor</th>
-                <th>Gatunek</th>
-                <th>Priorytet</th>
+                <th>Tytuł <i class="fas fa-sort"></i> </th>
+                <th>Autor <i class="fas fa-sort"></i> </th>
+                <th>Kategoria <i class="fas fa-sort"></i> </th>
+                <th>Priorytet <i class="fas fa-sort"></i> </th>
                 <th>Edytuj</th>
                 <th>Zapisz</th>
                 <th>Usuń</th>
@@ -104,11 +140,145 @@
         <tbody id="book-list"></tbody>
       </table>
 
-
     </div>
 
+    <div id="counter"> </div>
+    <button onclick="editHtmlTbleSelectedRow();">Edit</button>
+
+    
 
 </div>
+
+
+<div class="row justify-content-center mt-4">
+    <input type="button" class="btn add mx-sm-3" id="btnExport" value="Pobierz" onclick="Export()" />
+    <input type="button" class="btn add mx-sm-3" id="btnExport" value="Drukuj" onclick="Print()" />
+</div>
+
+<script>
+            
+            var rIndex,
+                table = document.getElementById("table");
+            
+            // check the empty input
+            function checkEmptyInput()
+            {
+                var isEmpty = false,
+                    title = document.getElementById("title").value,
+                    author = document.getElementById("author").value,
+                    genre = document.getElementById("genre").value;
+                    priority = document.getElementById("priority").value;
+            
+                if(title === ""){
+                    alert("First Name Connot Be Empty");
+                    isEmpty = true;
+                }
+                else if(author === ""){
+                    alert("Last Name Connot Be Empty");
+                    isEmpty = true;
+                }
+                else if(genre === ""){
+                    alert("Age Connot Be Empty");
+                    isEmpty = true;
+                }
+                else if(priority === ""){
+                    alert("Age Connot Be Empty");
+                    isEmpty = true;
+                }
+                return isEmpty;
+            }
+            
+            // add Row
+            
+            // display selected row data into input text
+            function selectedRowToInput()
+            {
+                
+                for(var i = 1; i < table.rows.length; i++)
+                {
+                    table.rows[i].getElementById('edit').onclick = function()
+                    {
+                      // get the seected row index
+                      rIndex = this.rowIndex;
+                      document.getElementById("title").value = this.cells[0].innerHTML;
+                      document.getElementById("author").value = this.cells[1].innerHTML;
+                      document.getElementById("genre").value = this.cells[2].innerHTML;
+                      document.getElementById("priority").value = this.cells[3].innerHTML;
+                    };
+                }
+            }
+            selectedRowToInput();
+            
+            function editHtmlTbleSelectedRow()
+            {
+                var title = document.getElementById("title").value,
+                    author = document.getElementById("author").value,
+                    genre = document.getElementById("genre").value;
+                    priority = document.getElementById("priority").value;
+               if(!checkEmptyInput()){
+                table.rows[rIndex].cells[0].innerHTML = title;
+                table.rows[rIndex].cells[1].innerHTML = author;
+                table.rows[rIndex].cells[2].innerHTML = genre;
+                table.rows[rIndex].cells[3].innerHTML = priority;
+              }
+            }
+            
+
+</script>
+
+<script>
+
+th = document.getElementsByTagName('th');
+
+for(let c=0; c < th.length; c++){
+
+    th[c].addEventListener('click',item(c))
+}
+
+
+function item(c){
+
+    return function(){
+      sortTable(c)
+    }
+}
+
+function sortTable(c) {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("table");
+  switching = true;
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[c];
+      y = rows[i + 1].getElementsByTagName("TD")[c];
+      //check if the two rows should switch place:
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        //if so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+  </script>
+
 
 <div class="footer">
 <div class="row">
@@ -128,11 +298,55 @@
 </div>
 </div>
 
-
+</div>
 <script src="script.js"></script>
-  <!-- End your project here-->
+  <script>
+    let dragItem = document.getElementById("book-list");
+    new Sortable(dragItem,{
+    handle:'.handle',
+    animation:300
+})
+  </script>
+
+
+ 
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+  <script type="text/javascript">
+
+      function Export() {
+          html2canvas(document.getElementById('table'), {
+              onrendered: function (canvas) {
+                  var data = canvas.toDataURL();
+                  var docDefinition = {
+                      content: [{
+                          image: data,
+                          width:500,
+                      }]
+                  };
+                  pdfMake.createPdf(docDefinition).download("Table.pdf");
+              }
+          });
+      }
+
+      function Print() {
+          html2canvas(document.getElementById('table'), {
+              onrendered: function (canvas) {
+                  var data = canvas.toDataURL();
+                  var docDefinition = {
+                      content: [{
+                          image: data,
+                          width:500,
+                      }]
+                  };
+                  pdfMake.createPdf(docDefinition).print("Table.pdf");
+              }
+          });
+      }
+  </script>
 
 </body>
+
 <!-- Main js file -->
 <script type="text/javascript" src="js/index.min.js"></script>
 <!-- Custom scripts -->
