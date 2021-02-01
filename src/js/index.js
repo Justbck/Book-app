@@ -15,7 +15,7 @@ class Book {
   }
 }
 
-// filter
+// filter table
 
 (function () {
   // eslint-disable-next-line wrap-iife
@@ -52,19 +52,11 @@ class Book {
     };
   })();
 
-  /* console.log(document.readyState);
-	document.addEventListener('readystatechange', function() {
-		if (document.readyState === 'complete') {
-      console.log(document.readyState);
-			TableFilter.init();
-		}
-	}); */
-
   TableFilter.init();
   // eslint-disable-next-line prettier/prettier
 }());
 
-// UI class: Handle UI Tasks
+// UI class: Handle UI Tasks - display changes/alerts
 
 class UI {
   static displayBooks() {
@@ -72,32 +64,33 @@ class UI {
     books.forEach((book) => UI.addBookToList(book));
   }
 
-  // ilość książek
-
-  static displayBookCount() {
+  static updateCount() {
     const books = Store.getBooks();
-    const list = document.querySelector('#count');
+    const list = document.querySelector('#counter');
     const row = document.createElement('tr');
 
     row.innerHTML = `
-      <td> Liczba książek: </td><td>${books.length}</td>
+      <td>Liczba książek: ${books.length}</td>
       `;
 
-    list.appendChild(row);
+    list.replaceWith(row);
   }
+  // adding books
 
   static addBookToList(book) {
     const list = document.querySelector('#book-list');
     const row = document.createElement('tr');
+    row.className = 'handle';
 
     row.innerHTML = `
-      <td>${book.title}</td>
-      <td>${book.author}</td>
-      <td>${book.genre}</td>
-      <td>${book.priority}</td>
+      
+      <td class="title-data"><i style = "padding: 0px 20px" class="fa fa-bars bars"></i>${book.title}</td>
+      <td class="author">${book.author}</td>
+      <td class="genre">${book.genre}</td>
+      <td class="priority">${book.priority}</td>
       <td><a href="#" class="btn btn-edit btn-sm edit"><i class="far fa-edit"></i></a></td>
-      <td><a href="#" class="btn btn-save btn-sm delete"><i class="fas fa-check"></i></a></td>
-      <td><a id="decrease" href="#" class="btn btn-delete btn-sm delete"><i class="fas fa-times"></i></a></td>
+      <td><a href="#" class="btn btn-save btn-sm save"><i class="fas fa-check"></i></a></td>
+      <td><a id="delete" href="#" class="btn btn-delete danger btn-sm delete"><i class="fas fa-times"></i></a></td>
       `;
 
     list.appendChild(row);
@@ -111,24 +104,16 @@ class UI {
     }
   }
 
-  static editBook(el) {
-    if (el.classList.contains('edit')) {
-      el.parentElement.parentElement.remove();
-    }
-  }
-
-  // custom alert
   static showAlert(message, className) {
     const div = document.createElement('div');
     div.className = `alert alert-${className}`;
     div.appendChild(document.createTextNode(message));
-    // grab and put in
     const container = document.querySelector('.container');
-    const form = document.querySelector('#table');
+    const form = document.querySelector('#book-form');
     container.insertBefore(div, form);
 
-    // Vanish in 3s
-    setTimeout(() => document.querySelector('.alert').remove(), 1000);
+    // Vanish in 2 seconds
+    setTimeout(() => document.querySelector('.alert').remove(), 2000);
   }
 
   static clearFields() {
@@ -141,6 +126,7 @@ class UI {
 
 // made it static so we dont have to instansiate the store class
 // Store Class: Handles Storage
+
 class Store {
   static getBooks() {
     let books;
@@ -149,7 +135,6 @@ class Store {
     } else {
       books = JSON.parse(localStorage.getItem('books'));
     }
-
     return books;
   }
 
@@ -159,10 +144,10 @@ class Store {
     localStorage.setItem('books', JSON.stringify(books));
   }
 
-  static removeBook(priority) {
+  static removeBook(title) {
     const books = Store.getBooks();
     books.forEach((book, index) => {
-      if (book.priority === priority) {
+      if (book.title === title) {
         books.splice(index, 1);
       }
     });
@@ -174,7 +159,6 @@ class Store {
 
 // Event: Display Books
 document.addEventListener('DOMContentLoaded', UI.displayBooks);
-document.addEventListener('submit', UI.displayBookCount);
 
 // Event: Add a book
 document.querySelector('#book-form').addEventListener('submit', (e) => {
@@ -188,8 +172,8 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
   const priority = document.querySelector('#priority').value;
 
   // Validation
-  if (title === '' || author === '' || genre === '' || priority === '') {
-    UI.showAlert('Wypełnij wszystkie pola');
+  if (title === ' ' || author === ' ' || genre === '' || priority === ' ') {
+    UI.showAlert('Wypełnij wszystkie pola, aby dodać książke.', 'danger');
   } else {
     // instiantiate book
     const book = new Book(title, author, genre, priority);
@@ -199,8 +183,8 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
 
     // add books to store
     Store.addBook(book);
-
-    UI.showAlert('Książka dodana');
+    UI.updateCount();
+    UI.showAlert('Książka dodana.', 'success');
 
     // this method clear fields
     UI.clearFields();
@@ -212,4 +196,6 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
 
 document.querySelector('#book-list').addEventListener('click', (e) => {
   UI.deleteBook(e.target);
+  // Remove book from Store
+  Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
 });
