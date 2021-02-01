@@ -2,11 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap');
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: bold;
+    letter-spacing: 2px;
+
   }
   
   body{
@@ -14,10 +20,8 @@
     background-color: #f0f0f0b9;
   }
 
-  nav{
-    background-color: rgb(255, 119, 56);
-    
-  }
+
+
 
   label{
     font-weight: bolder;
@@ -33,7 +37,7 @@
     border-bottom: 1px solid #222222;
     padding: 10px;
     font-size: 64px;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
 
 
   }
@@ -53,7 +57,17 @@
     letter-spacing: 2px;
     border-left: 1px solid  #f0f0f0;
     font-size: 20px;
-    font-family: 'Abril Fatface', cursive;
+    cursor: pointer;
+    
+    i{
+      transition: ease-in 0.5s;
+      &:hover{
+        cursor: pointer;
+        color: #f0f0f050;
+      }
+    }
+
+    
   }
 
   .search{
@@ -62,12 +76,27 @@
     padding: 30px;
   }
 
+  .sort-title {
+    text-align: right;
+    font-style: normal;
+    padding-top: 5px;
+    text-transform: uppercase;
+  }
+
+  .title-data {
+    text-align: left;
+  }
+
+  .bars{
+    &:hover{
+      cursor: pointer;
+    }
+  }
 
 
   .add {
       width:200px;
       letter-spacing: 2px;
-      font-size: 20px;
       color: #000;
       font-family: 'Abril Fatface', cursive;
       background-color: rgb(255, 119, 56);
@@ -78,6 +107,13 @@
           color:rgb(46, 46, 46);
       }
   }
+
+  .add-genre{
+    width:100%;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+
 
   .btn-edit{
 
@@ -98,32 +134,38 @@
   .footer {
     margin-top:50px;
     background-color: #222222;
-    height:60vh;
     padding: 50px 15%;
     color: #f0f0f0;
 
     
       .emp p{
-        font-family: 'Abril Fatface', cursive;
         font-size: 34px;
-        padding: 20px 0px;
+        padding: 35px 0px;
         border-bottom:1px solid #f0f0f0;
-  
+        letter-spacing: 5px;
+        font-weight: lighter;
       }
 
       .name, .web p{
         text-align: right;
       }
 
+      .name{
+        padding: 35px 0px 0px 0px;
+        font-size:22px;
+      }
+
       .web {
-        padding: 15px 0px;
+        padding: 0px 0px 35px 0px;
         border-bottom:1px solid #f0f0f0;
       }
     
 
     p{
-    letter-spacing: 2px;
+    letter-spacing: 4px;
     color: #f0f0f0;
-    font-size: 18px;
     }
   }
+
+
+  
