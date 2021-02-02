@@ -1,162 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
-  <title>MDB Webpack Starter</title>
+  <title>Lista książek</title>
+  <!--Pdf Make-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/pdfmake.min.js" integrity="sha512-HLbtvcctT6uyv5bExN/qekjQvFIl46bwjEq6PBvFogNfZ0YGVE+N3w6L+hGaJsGPWnMcAQ2qK8Itt43mGzGy8Q==" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.70/vfs_fonts.js" integrity="sha512-vv3EN6dNaQeEWDcxrKPFYSFba/kgm//IUnvLPMPadaUf5+ylZyx4cKxuc4HdBf0PPAlM7560DV63ZcolRJFPqA==" crossorigin="anonymous"></script>
+  <!--Drag-&-Drop-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.2/Sortable.min.js" integrity="sha512-ELgdXEUQM5x+vB2mycmnSCsiDZWQYXKwlzh9+p+Hff4f5LA+uf0w2pOp3j7UAuSAajxfEzmYZNOOLQuiotrt9Q==" crossorigin="anonymous"></script>
-
-  <!-- Favicon -->
-  <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
-  <!-- Google Fonts Roboto -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
   <!-- Main css file -->
   <link rel="stylesheet" href="css/index.min.css" />
   <!-- Custom styles -->
-  <style></style>
 </head>
 
 <body>
 
   <!-- Start your project here-->
+
   <div class="page">
-    <nav class="navbar navbar-expand-lg">
-   
-    </nav>
-    <div class="container mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="header">
+            <h1>Lista Książek</h1>
+          </div>
+          <div class="subtitle">
+            <p>twoja wirtualna biblioteka</p>
+          </div>
+            <p class="subtitle-2">dodaj książki do kolekcji <i class="fas fa-arrow-down"></i> </a></p>
+          <img class ="img-3" src="img/book-img-3.jpg">
 
-      
-  
+          <div class="block">
 
-
-    <div class="row justify-content-center title-row">
-      <div class="col">
-        <h1 class="title text-center"> Lista Książek  </h1>
-        <p class=" text-center">twoja wirtualna biblioteka</p>
-
-      </div>
-
-    </div>
-
-
-
-    <form id="book-form">
-
-        <div class="form-group mx-sm-3 mb-2">
-            <label for="title">Tytuł</label>
-            <input type="text" id="title" class="form-control">
-        </div>
-        <div class="form-group mx-sm-3 mb-2">
-            <label for="author">Autor</label>
-            <input type="text" id="author" class="form-control">
-        </div>
-        <div class="form-group mx-sm-3 mb-2">
-          <label for="genre">Gatunek</label>
-      </div>
-
-        <div class="form-group mx-sm-3 mb-2">
-          <select class="form-select" aria-label="Default select example" id="genre">
-            <option selected>  </option>
-            <option value="Kryminał">Kryminał</option>
-            <option value="Sci-fi">Sci-fi</option>
-            <option value="Fantasy">Fantasy</option>
-            <option value="Poezja">Poezja</option>
-            <option value="Dramat">Dramat</option>
-            <option value="Nauki Ścisłe">Nauki Ścisłe</option>
-          </select>
-
-          <div class="row mt-4">
-            <div class="col-8 mt-2">
-              <input type="text" class="form-control" id="val">
-            </div>
-            <div class="col-4 mt-2">
-              <button class="btn add-genre btn " onclick="insertValue();">Dodaj kategorie</button>
-            </div>
           </div>
           
-          <script>
-              
-              function insertValue()
-              {
-                  var select = document.getElementById("genre"),
-                      txtVal = document.getElementById("val").value,
-                      newOption = document.createElement("OPTION"),
-                      newOptionVal = document.createTextNode(txtVal);
-               
-                  newOption.appendChild(newOptionVal);
-                  select.insertBefore(newOption,select.lastChild);
-              }
-              
-          </script>
-  
         </div>
-
-        <div class="form-group mx-sm-3 mb-2">
-          <label for="priority">Priorytet</label>
-          <select class="form-select" aria-label="Default select example" id="priority">
-            <option selected></option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
+        <div class="col col1">
+          <img class = "img-1" src="./img/books-img-1.jpg">
         </div>
+      </div>
 
-        <div class="row">
-          <input type="submit" value="Dodaj" class="btn add mx-auto mt-3">
-        </div>
+      
+      <div class="row page1">
 
-        <div class="row mt-3 search justify-content-end">
-          <div class="col">
-            <input type="text" class="table-filter form-control mt-5" placeholder="Szukaj..." class="form-control" data-table="order-table"></input>
-          </div>
-        </div>
-    
-      </form>
+    <h1 class="text-center  wow fadeIn" data-wow-duration="2s" data-wow-delay="1s">Kolekcja</h1>
+        
+    <form id="book-form">
 
-
-  
-
-  <div class="container mt-6 table-responsive">
-    <table class="table order-table  table-striped mt-2" id="table">
-        <thead>
-            <tr>
-                <th>Tytuł <i class="fas fa-sort"></i> </th>
-                <th>Autor <i class="fas fa-sort"></i> </th>
-                <th>Kategoria <i class="fas fa-sort"></i> </th>
-                <th>Priorytet <i class="fas fa-sort"></i> </th>
-                <th>Edytuj</th>
-                <th>Zapisz</th>
-                <th>Usuń</th>
-            </tr>
-        </thead>
-        <tbody id="book-list"></tbody>
-      </table>
-
+      <div class="form-group mx-sm-3 mb-2">
+          <label for="title">Tytuł</label>
+          <input type="text" id="title" class="form-control">
+      </div>
+      <div class="form-group mx-sm-3 mb-2">
+          <label for="author">Autor</label>
+          <input type="text" id="author" class="form-control">
+      </div>
+      <div class="form-group mx-sm-3 mb-2">
+        <label for="genre">Gatunek</label>
     </div>
 
-    <div id="counter"> </div>
-    <button onclick="editHtmlTbleSelectedRow();">Edit</button>
+      <div class="form-group mx-sm-3 mb-2">
+        <select type="text" class="form-select" aria-label="Default select example" id="genre">
+          <option selected>  </option>
+          <option value="Kryminał">Kryminał</option>
+          <option value="Sci-fi">Sci-fi</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Poezja">Poezja</option>
+          <option value="Dramat">Dramat</option>
+          <option value="Nauki Ścisłe">Nauki Ścisłe</option>
+        </select>
 
-    
-
-</div>
-
-
-<div class="row justify-content-center mt-4">
-    <input type="button" class="btn add mx-sm-3" id="btnExport" value="Pobierz" onclick="Export()" />
-    <input type="button" class="btn add mx-sm-3" id="btnExport" value="Drukuj" onclick="Print()" />
-</div>
-
-<script>
+        <div class="row mt-4">
+          <div class="col-8 mt-2">
+            <input type="text" class="form-control" id="val">
+          </div>
+          <div class="col-4 mt-2">
+            <button type="reset" class="btn add-genre btn " onclick="insertValue();">Dodaj kategorie</input>
+          </div>
+        </div>
+        
+        <script>
             
+            function insertValue()
+            {
+                var select = document.getElementById("genre"),
+                    txtVal = document.getElementById("val").value,
+                    newOption = document.createElement("OPTION"),
+                    newOptionVal = document.createTextNode(txtVal);
+             
+                newOption.appendChild(newOptionVal);
+                select.insertBefore(newOption,select.lastChild);
+            }
+            
+        </script>
+
+      </div>
+
+      <div class="form-group mx-sm-3 mb-2">
+        <label for="priority">Priorytet</label>
+        <select type="text" class="form-select" aria-label="Default select example" id="priority">
+          <option selected></option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <input type="submit" value="Dodaj" class="btn add mx-auto mt-3">
+        <button class="btn add mx-auto mt-3" onclick="editHtmlTbleSelectedRow();">Edit</button>
+      </div>
+
+      <script>
+    
             var rIndex,
                 table = document.getElementById("table");
             
@@ -196,7 +159,7 @@
                 
                 for(var i = 1; i < table.rows.length; i++)
                 {
-                    table.rows[i].getElementById('edit').onclick = function()
+                    table.rows[i].onclick = function()
                     {
                       // get the seected row index
                       rIndex = this.rowIndex;
@@ -223,133 +186,437 @@
               }
             }
             
+      </script>
 
-</script>
+      <div class="row mt-3 search justify-content-end">
+        <div class="col">
+          <input type="text" class="table-filter form-control mt-5" placeholder="Szukaj..." class="form-control" data-table="order-table"></input>
+        </div>
+      </div>
+  
+    </form>
 
-<script>
+    <div class="container mt-6 table-responsive">
+      <table class="table order-table  table-striped mt-2" id="table">
+          <thead>
+              <tr>
+                  <th>Tytuł <i class="fas fa-sort"></i> </th>
+                  <th>Autor <i class="fas fa-sort"></i> </th>
+                  <th>Kategoria <i class="fas fa-sort"></i> </th>
+                  <th>Priorytet <i class="fas fa-sort"></i> </th>
+                  <th>Usuń</th>
+              </tr>
+          </thead>
+          <tbody id="book-list"></tbody>
+        </table>
+  
+      </div>
 
-th = document.getElementsByTagName('th');
+      <div class="row"><div class="col-1">Liczba ksiażek:</div> <div id="counter" class="counter-text col-2"> 0 </div> </div>
 
-for(let c=0; c < th.length; c++){
-
-    th[c].addEventListener('click',item(c))
+      <script>
+        var drawCounter = function () {
+  document.getElementById('counter').innerHTML = store.counter
 }
 
 
-function item(c){
 
-    return function(){
-      sortTable(c)
-    }
+
+// 카운터 상태 (데이터)
+var store = {
+  counter: 0  
 }
 
-function sortTable(c) {
-  var table, rows, switching, i, x, y, shouldSwitch;
-  table = document.getElementById("table");
-  switching = true;
-  /*Make a loop that will continue until
-  no switching has been done:*/
-  while (switching) {
-    //start by saying: no switching is done:
-    switching = false;
-    rows = table.rows;
-    /*Loop through all table rows (except the
-    first, which contains table headers):*/
-    for (i = 1; i < (rows.length - 1); i++) {
-      //start by saying there should be no switching:
-      shouldSwitch = false;
-      /*Get the two elements you want to compare,
-      one from current row and one from the next:*/
-      x = rows[i].getElementsByTagName("TD")[c];
-      y = rows[i + 1].getElementsByTagName("TD")[c];
-      //check if the two rows should switch place:
-      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-        //if so, mark as a switch and break the loop:
-        shouldSwitch = true;
-        break;
+// 데이터 조작 함수
+var increase = function () {
+  store.counter++
+}
+
+var decrease = function () {
+  store.counter--
+}
+
+// 앱 실행 함수
+var init = function () {
+  bindEvents()
+  drawCounter()  
+}
+
+init()
+      </script>
+    
+      <div class="container">
+        
+        
+    </div>
+    
+
+  
+      
+  
+  </div>
+  
+  
+  <div class="row justify-content-center mt-4">
+      <input type="button" class="btn add mx-sm-3" id="btnExport" value="Pobierz" onclick="Export()" />
+      <input type="button" class="btn add mx-sm-3" id="btnExport" value="Drukuj" onclick="Print()" />
+  </div>
+  
+  <script>
+
+    
+    // filter table
+    
+    (function () {
+      // eslint-disable-next-line wrap-iife
+      const TableFilter = (function () {
+        const Arr = Array.prototype;
+        let input;
+    
+        function onInputEvent(e) {
+          input = e.target;
+          const table1 = document.getElementsByClassName(input.getAttribute('data-table'));
+          Arr.forEach.call(table1, (table) => {
+            Arr.forEach.call(table.tBodies, (tbody) => {
+              Arr.forEach.call(tbody.rows, filter);
+            });
+          });
+        }
+    
+        function filter(row) {
+          const text = row.textContent.toLowerCase();
+          // console.log(text);
+          const val = input.value.toLowerCase();
+          // console.log(val);
+          row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+        }
+    
+        return {
+          // eslint-disable-next-line object-shorthand
+          init: function () {
+            const inputs = document.getElementsByClassName('table-filter');
+            Arr.forEach.call(inputs, (input) => {
+              input.oninput = onInputEvent;
+            });
+          },
+        };
+      })();
+    
+      TableFilter.init();
+      // eslint-disable-next-line prettier/prettier
+    }());
+    </script>
+
+  
+  <script>
+  
+  th = document.getElementsByTagName('th');
+  
+  for(let c=0; c < th.length; c++){
+  
+      th[c].addEventListener('click',item(c))
+  }
+  
+  
+  function item(c){
+  
+      return function(){
+        sortTable(c)
       }
-    }
-    if (shouldSwitch) {
-      /*If a switch has been marked, make the switch
-      and mark that a switch has been done:*/
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
+  }
+  
+  function sortTable(c) {
+    var table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("table");
+    switching = true;
+    /*Make a loop that will continue until
+    no switching has been done:*/
+    while (switching) {
+      //start by saying: no switching is done:
+      switching = false;
+      rows = table.rows;
+      /*Loop through all table rows (except the
+      first, which contains table headers):*/
+      for (i = 1; i < (rows.length - 1); i++) {
+        //start by saying there should be no switching:
+        shouldSwitch = false;
+        /*Get the two elements you want to compare,
+        one from current row and one from the next:*/
+        x = rows[i].getElementsByTagName("TD")[c];
+        y = rows[i + 1].getElementsByTagName("TD")[c];
+        //check if the two rows should switch place:
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          //if so, mark as a switch and break the loop:
+          shouldSwitch = true;
+          break;
+        }
+      }
+      if (shouldSwitch) {
+        /*If a switch has been marked, make the switch
+        and mark that a switch has been done:*/
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+      }
     }
   }
-}
-  </script>
+    </script>
+  
+    </div>
+  <div class="footer">
+  <div class="row">
+    <div class="col autor emp">
+      <p>Autor projektu. </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col autor name">
+      <p>Justyna Bućko</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col autor web">
+      <p>http://justyna-bucko.pl/</p>
+    </div>
+  </div>
+  </div>
+  
+  </div>
+  <script src="script.js"></script>
+    <script>
+      let dragItem = document.getElementById("book-list");
+      new Sortable(dragItem,{
+      handle:'.handle',
+      animation:300
+  })
+    </script>
+  
+  
+   
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script type="text/javascript">
+  
+        function Export() {
+            html2canvas(document.getElementById('table'), {
+                onrendered: function (canvas) {
+                    var data = canvas.toDataURL();
+                    var docDefinition = {
+                        content: [{
+                            image: data,
+                            width:500,
+                        }]
+                    };
+                    pdfMake.createPdf(docDefinition).download("Table.pdf");
+                }
+            });
+        }
+  
+        function Print() {
+            html2canvas(document.getElementById('table'), {
+                onrendered: function (canvas) {
+                    var data = canvas.toDataURL();
+                    var docDefinition = {
+                        content: [{
+                            image: data,
+                            width:500,
+                        }]
+                    };
+                    pdfMake.createPdf(docDefinition).print("Table.pdf");
+                }
+            });
+        }
+    </script>
+
+        
+     
 
 
-<div class="footer">
-<div class="row">
-  <div class="col autor emp">
-    <p>Autor projektu. </p>
-  </div>
-</div>
-<div class="row">
-  <div class="col autor name">
-    <p>Justyna Bućko</p>
-  </div>
-</div>
-<div class="row">
-  <div class="col autor web">
-    <p>http://justyna-bucko.pl/</p>
-  </div>
-</div>
-</div>
 
-</div>
-<script src="script.js"></script>
+
+      </div>
+
+    </div>
+
+  </div>
+  
   <script>
-    let dragItem = document.getElementById("book-list");
-    new Sortable(dragItem,{
-    handle:'.handle',
-    animation:300
-})
+
+    // Book Class: Represents a Book
+class Book {
+  constructor(title, author,genre,priority) {
+    this.title = title;
+    this.author = author;
+    this.genre = genre;
+    this.priority = priority;
+  }
+}
+
+// UI Class: Handle UI Tasks
+class UI {
+  static displayBooks() {
+    const books = Store.getBooks();
+
+    books.forEach((book) => UI.addBookToList(book));
+  }
+
+  static updateCount() {
+    const books = Store.getBooks();
+  }
+
+  static displayBookNumber(){
+    const list = document.querySelector('#counter');
+    const row = document.createElement('tr');
+
+    row.innerHTML = `
+      <td>${books.length}</td>
+      `;
+
+    list.replaceChild(row);
+  }
+
+  static addBookToList(book) {
+    const list = document.querySelector('#book-list');
+    const row = document.createElement('tr');
+    row.className = 'handle';
+
+    row.innerHTML = `
+      <td class="title-data edit-title"><i style = "padding: 0px 20px" class="fa fa-bars bars"></i>${book.title}</td>
+      <td>${book.author}</td>
+      <td>${book.genre}</td>
+      <td>${book.priority}</td>
+      <td><a href="#" class="btn btn-danger btn-sm delete">X</a></td>
+    `;
+
+    list.appendChild(row);
+    increase();
+    drawCounter();
+  }
+
+  static deleteBook(el) {
+    if(el.classList.contains('delete')) {
+      el.parentElement.parentElement.remove();
+      decrease();
+      drawCounter();
+    }
+  }
+
+  static editBookTitle(el) {
+    if(el.classList.contains('editTitle')) {
+      el.parentElement.parentElement.remove();
+    }
+  }
+
+
+
+
+  static showAlert(message, className) {
+    const div = document.createElement('div');
+    div.className = `alert alert-${className}`;
+    div.appendChild(document.createTextNode(message));
+    const container = document.querySelector('.page1');
+    const form = document.querySelector('#book-form');
+    container.insertBefore(div, form);
+
+    // Vanish in 3 seconds
+    setTimeout(() => document.querySelector('.alert').remove(), 3000);
+  }
+
+  static clearFields() {
+    document.querySelector('#title').value = '';
+    document.querySelector('#author').value = '';
+    document.querySelector('#genre').value = '';
+    document.querySelector('#priority').value = '';
+  }
+}
+
+// Store Class: Handles Storage
+class Store {
+  static getBooks() {
+    let books;
+    if(localStorage.getItem('books') === null) {
+      books = [];
+    } else {
+      books = JSON.parse(localStorage.getItem('books'));
+    }
+
+    return books;
+  }
+
+  static addBook(book) {
+    const books = Store.getBooks();
+    books.push(book);
+    localStorage.setItem('books', JSON.stringify(books));
+  }
+
+  static removeBook(priority) {
+    const books = Store.getBooks();
+
+    books.forEach((book, index) => {
+      if(book.priority === priority) {
+        books.splice(index, 1);
+      }
+    });
+
+    localStorage.setItem('books', JSON.stringify(books));
+  }
+}
+
+// Event: Display Books
+document.addEventListener('DOMContentLoaded', UI.displayBooks);
+
+// Event: Add a Book
+document.querySelector('#book-form').addEventListener('submit', (e) => {
+  // Prevent actual submit
+  e.preventDefault();
+
+  // Get form values
+  const title = document.querySelector('#title').value;
+  const author = document.querySelector('#author').value;
+  const genre = document.querySelector('#genre').value;
+  const priority = document.querySelector('#priority').value;
+
+  // Validate
+  if(title === '' || author === ''  || genre === ''  || priority === '') {
+    UI.showAlert('Wypełnij wszystkie pola, aby dodać książkę.', 'danger');
+  } else {
+    // Instatiate book
+    const book = new Book(title, author, genre, priority);
+
+    // Add Book to UI
+    UI.addBookToList(book);
+
+    // Add book to store
+    Store.addBook(book);
+    UI.updateCount();
+    // Show success message
+    UI.showAlert('Książka dodana.', 'success');
+
+    // Clear fields
+    UI.clearFields();
+  }
+});
+
+// Event: Remove a Book
+document.querySelector('#book-list').addEventListener('click', (e) => {
+  // Remove book from UI
+  UI.deleteBook(e.target);
+  UI.updateCount();
+
+
+  // Remove book from store
+  Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
+
+  // Show success message
+  UI.showAlert('Książka usunięta.', 'success');
+});
+
   </script>
 
-
- 
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-  <script type="text/javascript">
-
-      function Export() {
-          html2canvas(document.getElementById('table'), {
-              onrendered: function (canvas) {
-                  var data = canvas.toDataURL();
-                  var docDefinition = {
-                      content: [{
-                          image: data,
-                          width:500,
-                      }]
-                  };
-                  pdfMake.createPdf(docDefinition).download("Table.pdf");
-              }
-          });
-      }
-
-      function Print() {
-          html2canvas(document.getElementById('table'), {
-              onrendered: function (canvas) {
-                  var data = canvas.toDataURL();
-                  var docDefinition = {
-                      content: [{
-                          image: data,
-                          width:500,
-                      }]
-                  };
-                  pdfMake.createPdf(docDefinition).print("Table.pdf");
-              }
-          });
-      }
-  </script>
 
 </body>
 
-<!-- Main js file -->
-<script type="text/javascript" src="js/index.min.js"></script>
 <!-- Custom scripts -->
+
 <script type="text/javascript"></script>
 
 </html>
