@@ -29,22 +29,22 @@
   <div class="page">
     <div class="container">
       <div class="row">
-        <div class="col">
+        <div class="col col0">
           <div class="header">
-            <h1>Lista Książek</h1>
+            <h1>Biblioteka </h1>
           </div>
           <div class="subtitle">
-            <p>twoja wirtualna biblioteka</p>
+            <p> - twoja lista książek</p>
           </div>
-            <p class="subtitle-2">dodaj książki do kolekcji <i class="fas fa-arrow-down"></i> </a></p>
-          <img class ="img-3" src="img/book-img-3.jpg">
+            <p class="subtitle-2"> - dodaj do <span>kolekcji</span> <i class="fas fa-arrow-down"></i> </a></p>
+          
 
           <div class="block">
 
           </div>
           
         </div>
-        <div class="col col1">
+        <div class="col-auto col1">
           <img class = "img-1" src="./img/books-img-1.jpg">
         </div>
       </div>
@@ -52,7 +52,7 @@
       
       <div class="row page1">
 
-    <h1 class="text-center  wow fadeIn" data-wow-duration="2s" data-wow-delay="1s">Kolekcja</h1>
+    <h1 class="text-center collection" data-wow-duration="2s" data-wow-delay="1s">Kolekcja</h1>
         
     <form id="book-form">
 
@@ -87,6 +87,13 @@
             <button type="button" class="btn add-genre btn " onclick="insertValue();">Dodaj kategorie</input>
           </div>
         </div>
+
+
+
+
+
+
+
         
         <script>
             
@@ -104,6 +111,16 @@
             
         </script>
 
+
+
+
+
+
+
+
+
+
+
       </div>
 
       <div class="form-group mx-sm-3 mb-2">
@@ -120,79 +137,10 @@
 
       <div class="row">
         <input type="submit" value="Dodaj" class="btn add mx-auto mt-3">
-        <button class="btn add mx-auto mt-3" onclick="editHtmlTbleSelectedRow();">Edit</button>
+      
       </div>
 
-      <script>
-    
-            var rIndex,
-                table = document.getElementById("table");
-            
-            // check the empty input
-            function checkEmptyInput()
-            {
-                var isEmpty = false,
-                    title = document.getElementById("title").value,
-                    author = document.getElementById("author").value,
-                    genre = document.getElementById("genre").value;
-                    priority = document.getElementById("priority").value;
-            
-                if(title === ""){
-                    alert("First Name Connot Be Empty");
-                    isEmpty = true;
-                }
-                else if(author === ""){
-                    alert("Last Name Connot Be Empty");
-                    isEmpty = true;
-                }
-                else if(genre === ""){
-                    alert("Age Connot Be Empty");
-                    isEmpty = true;
-                }
-                else if(priority === ""){
-                    alert("Age Connot Be Empty");
-                    isEmpty = true;
-                }
-                return isEmpty;
-            }
-            
-            // add Row
-            
-            // display selected row data into input text
-            function selectedRowToInput()
-            {
-                
-                for(var i = 1; i < table.rows.length; i++)
-                {
-                    table.rows[i].onclick = function()
-                    {
-                      // get the seected row index
-                      rIndex = this.rowIndex;
-                      document.getElementById("title").value = this.cells[0].innerHTML;
-                      document.getElementById("author").value = this.cells[1].innerHTML;
-                      document.getElementById("genre").value = this.cells[2].innerHTML;
-                      document.getElementById("priority").value = this.cells[3].innerHTML;
-                    };
-                }
-            }
-            selectedRowToInput();
-            
-            function editHtmlTbleSelectedRow()
-            {
-                var title = document.getElementById("title").value,
-                    author = document.getElementById("author").value,
-                    genre = document.getElementById("genre").value;
-                    priority = document.getElementById("priority").value;
-               if(!checkEmptyInput()){
-                table.rows[rIndex].cells[0].innerHTML = title;
-                table.rows[rIndex].cells[1].innerHTML = author;
-                table.rows[rIndex].cells[2].innerHTML = genre;
-                table.rows[rIndex].cells[3].innerHTML = priority;
-              }
-            }
-            
-      </script>
-
+     
       <div class="row mt-3 search justify-content-end">
         <div class="col">
           <input type="text" class="table-filter form-control mt-5" placeholder="Szukaj..." class="form-control" data-table="order-table"></input>
@@ -220,18 +168,31 @@
       
         <div id="book-list-1"></div>
 
+        <div class="row justify-content-center mt-4">
+          <input type="button" class="btn add mx-sm-3" id="btnExport" value="Pobierz" onclick="Export()" />
+          <input type="button" class="btn add mx-sm-3" id="btnExport" value="Drukuj" onclick="Print()" />
+      </div>
+
       <div class="row">
         <div class="col">
           <div class="form-group mx-sm-3 mb-2">
 
         </div>
-        <div class="col-1">
-          Liczba ksiażek:
+        <div class="col-12">
+          Ilość wszystkich ksiażek:
         </div>
          <div id="counter" class="counter-text col-2"> 0 </div>
-         <div id= 'couter-cat'></div>
+         <br/>
+         <div>W danej kategorii: </div><div id= 'couter-cat'></div>
       
          </div>
+
+       
+
+
+
+
+
 
 
 
@@ -266,14 +227,29 @@
 
       </script>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
     </div>
   </div>
   
   
-  <div class="row justify-content-center mt-4">
-      <input type="button" class="btn add mx-sm-3" id="btnExport" value="Pobierz" onclick="Export()" />
-      <input type="button" class="btn add mx-sm-3" id="btnExport" value="Drukuj" onclick="Print()" />
-  </div>
+
+
+
+
+
+
   
   <script>
 
@@ -319,6 +295,17 @@
       // eslint-disable-next-line prettier/prettier
     }());
     </script>
+
+
+
+
+
+
+
+
+
+
+
 
   
   <script>
@@ -373,6 +360,16 @@
     }
   }
     </script>
+
+
+
+
+
+
+
+
+
+
   
     </div>
   <div class="footer">
@@ -397,6 +394,14 @@
 
   
   <script src="script.js"></script>
+
+
+
+
+
+
+
+
     <script>
       //drag & drop sort
       let dragItem = document.getElementById("book-list");
@@ -405,18 +410,22 @@
       animation:300
   })
     </script>
+
+
+
+
+
+
+
+
+
   
-  
-  <script>
 
-
-
-
-
-  </script>
    
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    
+    
     <script type="text/javascript">
   
         function Export() {
@@ -452,6 +461,11 @@
         }
     </script>
 
+
+
+
+
+
         
      
 
@@ -464,6 +478,10 @@
 
   </div>
   
+
+
+
+
   <script>
 
     // Book Class: Represents a Book
@@ -503,8 +521,13 @@ class UI {
 
         const list1 = document.querySelector('#book-list-1');
         const row1 = document.querySelector('#book-list-1');
+         var count1 = JSON.stringify(count);
+         var count2 = count1.replace(/"/g, '');
+         var count3 = count2.replace(/}/g, '')
+         var count4 = count3.replace(/{/g, '')
+
         row1.innerHTML = `
-        <div class = "category-counter">${JSON.stringify(count)}</div>
+        <div class = "category-counter">${count4}</div>
         `;
 
         
@@ -515,7 +538,7 @@ class UI {
         const list2 = document.querySelector('#book-list-1');
         const row2 = document.querySelector('#book-list-1');
         row2.innerHTML = `
-        <div class = "category-counter"></div>
+        <div class = "category-counter"><p>Brak książek w kolekcji</p></div>
         `;
 
         
@@ -649,16 +672,20 @@ document.querySelector('#book-list').addEventListener('click', (e) => {
   // Remove book from UI
   UI.deleteBook(e.target);
   UI.updateCount();
-
-
   // Remove book from store
   Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
-
   // Show success message
   UI.showAlert('Książka usunięta.', 'success');
 });
 
-  </script>
+</script>
+
+
+
+
+
+
+
 
 
 </body>
