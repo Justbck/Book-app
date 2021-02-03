@@ -2,24 +2,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap');
 
+@import url(//db.onlinewebfonts.com/c/30d45238271619dd88774064114b9a05?family=Cosi+Times+Roman);
+@font-face {font-family: "Cosi Times Roman"; src: url("//db.onlinewebfonts.com/t/30d45238271619dd88774064114b9a05.eot"); src: url("//db.onlinewebfonts.com/t/30d45238271619dd88774064114b9a05.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/30d45238271619dd88774064114b9a05.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/30d45238271619dd88774064114b9a05.woff") format("woff"), url("//db.onlinewebfonts.com/t/30d45238271619dd88774064114b9a05.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/30d45238271619dd88774064114b9a05.svg#Cosi Times Roman") format("svg"); }
+
 
 h1{
-
     //font-family: 'Cormorant Garamond', serif;
+    font-family: "Cosi Times Roman";
+    text-transform: uppercase;
     font-size: 84px;
-    letter-spacing: 4px;
+    letter-spacing: 2px;
+    color: #313131;
 }
 
+
+@media(max-width:900px){
+  h1{
+    font-size: 50px;
+    text-align: center;
+  }
+  .subtitle{
+    text-align: center;
+  }
+}
 *{
     font-family: 'Raleway', sans-serif;
+    color: #36413E;
 }
-
 
 .page{
-}
-
-.header{
-    padding: 50px 0px 0px 0px;
+  background-color: #cac4bbc0;
 }
 
 .subtitle{
@@ -27,30 +39,37 @@ h1{
 }
 
 .subtitle-2 {
-    padding: 20px 80px 20px 0px;
-    font-style: italic;
+    font-family: "Cosi Times Roman";
+    padding: 250px 80px 20px 0px;
     text-align: right;
     letter-spacing: 2px;
         i {
         padding-left: 15px;
-        color: rgb(255, 116, 36);
+        color: #BD4F6C;
+        font-size: 22px;
+        }
+        span{
+          font-style: italic;
+          font-family: "Cosi Times Roman";
+          text-transform: uppercase;
         }
 }
 
+
+.col0{
+  border-bottom: 1px solid #000;
+}
+.col1{
+  height: 100vh;
+  border-bottom: 1px solid #000;
+}
+
 .img-1{
-    height:100vh;
+  height: 100vh;
+  opacity: 0.9;
 }
 
-.img-3{
-    width:100%;
-}
 
-.block{
-    border-top: 1px solid #222222;
-    margin-top: 25px;
-    width:100%;
-    height:200px;
-}
 
 @media (max-width:900px){
     .col1{
@@ -59,50 +78,51 @@ h1{
 }
 
 //main-page
-label{
-    font-weight: bolder;
-  }
 
   #book-form{
-    padding:20px 80px;
+    padding:20px;
   }
 
-  .title{
-    color: #222222;
-    border-bottom: 1px solid #222222;
-    padding: 10px;
-    font-size: 64px;
-    letter-spacing: 4px;
+  @media(min-width:900px){
+    #book-form{
+      padding:20px 100px;
+    }
+  }
 
-
+  .collection{
+    font-size: 44px;
+    margin-top: 60px;
   }
 
   table{
    text-align: center;
-   border: 1px solid #222222;
+   border: 2px solid #222222;
   }
-
 
   thead{
     background-color: #222222;
-    color: #f0f0f0;    
   }
 
-  th{
-    letter-spacing: 2px;
+  tr{
+    border: 2px solid #6b6b6b;
+  }
+
+
+  th {
+    color: #b4b4b4;   
+    letter-spacing: 3px;
     border-left: 1px solid  #f0f0f0;
     font-size: 20px;
     cursor: pointer;
     
     i{
+      color: #b4b4b4;   
       transition: ease-in 0.5s;
       &:hover{
         cursor: pointer;
-        color: #f0f0f050;
+        color: #ffffff;
       }
     }
-
-    
   }
 
   .search{
@@ -111,12 +131,6 @@ label{
     padding: 30px;
   }
 
-  .sort-title {
-    text-align: right;
-    font-style: normal;
-    padding-top: 5px;
-    text-transform: uppercase;
-  }
 
   .title-data {
     text-align: left;
@@ -127,14 +141,12 @@ label{
       cursor: pointer;
     }
   }
-
-
   .add {
       width:200px;
-      letter-spacing: 2px;
+      letter-spacing: 4px;
       color: #000;
-      font-family: 'Raleway', sans-serif;
-      background-color: rgb(126, 126, 126);
+      font-family: "Cosi Times Roman";
+      background-color: #6883ba65;
       transition: ease-in 0.1s;
       margin-bottom: 20px;
 
@@ -147,28 +159,12 @@ label{
     width:100%;
     font-weight: bold;
     letter-spacing: 2px;
+    font-family: "Cosi Times Roman";
+    background-color: #f0f0f0;
   }
-
-
-  .btn-edit{
-
-  }
-
-  .btn-save{
-    background-color: rgb(143, 143, 143);
-    color:#f0f0f0;
-
-  }
-
-  .btn-delete{
-    background-color: #000;
-    color:#f0f0f0;
-
-  }
-
 
   .category-counter{
-    font-size: 30px;
+    font-size: 20px;
   }
   
 
@@ -183,6 +179,7 @@ label{
 
     
       .emp p{
+        font-family: "Cosi Times Roman";
         font-size: 34px;
         padding: 35px 0px;
         border-bottom:1px solid #f0f0f0;
