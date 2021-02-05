@@ -72,9 +72,10 @@ class UI {
 
     row.innerHTML = `
         <td class="title-data edit-title"><i style = "padding: 0px 20px" class="fa fa-bars bars"></i>${book.title}</td>
-        <td>${book.author}</td>
-        <td>${book.genre}</td>
-        <td>${book.priority}</td>
+        <td class="author-data">${book.author}</td>
+        <td class= "genre-data">${book.genre}</td>
+        <td class = "priority-data">${book.priority}</td>
+        <td><a href="#" class="btn btn-danger btn-sm edit">E</a></td>
         <td><a href="#" class="btn btn-danger btn-sm delete">X</a></td>
       `;
     list.appendChild(row);
@@ -88,7 +89,38 @@ class UI {
       el.parentElement.parentElement.remove();
       decrease();
       drawCounter();
+      UI.showAlert('Książka usunięta.', 'success');
     }
+  }
+
+  static editBook(el) {
+    const emptyRow = document.createElement('tr');
+    emptyRow.className = 'handle';
+    emptyRow.innerHTML = `
+    <td class="title-data edit-title"><i style = "padding: 0px 20px" class="fa fa-bars bars"></i</td>
+    <td class="author-data"></td>
+    <td class= "genre-data"></td>
+    <td class = "priority-data"></td>
+    <td><a href="#" class="btn btn-danger btn-sm edit">E</a></td>
+    <td><a href="#" class="btn btn-danger btn-sm delete">X</a></td>
+  `;
+
+    if (el.classList.contains('edit')) {
+      UI.showAlert('Edycja Książki.', 'success');
+    }
+    el.parentElement.parentElement.parentElement.appendChild(emptyRow);
+    el.parentElement.parentElement.remove();
+    decrease();
+    document.querySelector('#title').value = 'edytuj';
+    document.querySelector('#author').value = 'edytuj';
+    document.querySelector('#genre').value = 'edytuj';
+    document.querySelector('#priority').value = 'edytuj';
+
+    const title = document.querySelector('#title').value;
+    const author = document.querySelector('#author').value;
+    const genre = document.querySelector('#genre').value;
+    const priority = document.querySelector('#priority').value;
+    setTimeout(() => emptyRow.remove(), 3000);
   }
 
   static showAlert(message, className) {
@@ -101,13 +133,6 @@ class UI {
 
     // Vanish in 3 seconds
     setTimeout(() => document.querySelector('.alert').remove(), 3000);
-  }
-
-  static clearFields() {
-    document.querySelector('#title').value = '';
-    document.querySelector('#author').value = '';
-    document.querySelector('#genre').value = '';
-    document.querySelector('#priority').value = '';
   }
 }
 
@@ -179,6 +204,36 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
   }
 });
 
+// Event: Add a Book
+document.querySelector('#editButton').addEventListener('submit', (e) => {
+  // Prevent actual submit
+  e.preventDefault();
+
+  // Get form values
+  const title = document.querySelector('#title').value;
+  const author = document.querySelector('#author').value;
+  const genre = document.querySelector('#genre').value;
+  const priority = document.querySelector('#priority').value;
+
+  // Validate
+  if (title === '' || author === '' || genre === '' || priority === '') {
+    UI.showAlert('Wypełnij wszystkie pola, aby dodać książkę.', 'danger');
+  } else {
+    // Instatiate book
+    const book = new Book(title, author, genre, priority);
+
+    // Add Book to UI
+    UI.addBookToList(book);
+
+    // Add book to store
+    // Show success message
+    UI.showAlert('Książka edytowana.', 'success');
+
+    // Clear fields
+    UI.clearFields();
+  }
+});
+
 // Event: Remove a Book
 document.querySelector('#book-list').addEventListener('click', (e) => {
   // Remove book from UI
@@ -187,5 +242,13 @@ document.querySelector('#book-list').addEventListener('click', (e) => {
   // Remove book from store
   Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
   // Show success message
-  UI.showAlert('Książka usunięta.', 'success');
+});
+
+document.querySelector('#book-list').addEventListener('click', (e) => {
+  // Remove book from UI
+  UI.editBook(e.target);
+  UI.fillFields(e);
+  UI.updateCount();
+  // Remove book from store
+  // Show success message
 });
