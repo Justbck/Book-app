@@ -6,6 +6,17 @@
 @font-face {font-family: "Cosi Times Roman"; src: url("//db.onlinewebfonts.com/t/30d45238271619dd88774064114b9a05.eot"); src: url("//db.onlinewebfonts.com/t/30d45238271619dd88774064114b9a05.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/30d45238271619dd88774064114b9a05.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/30d45238271619dd88774064114b9a05.woff") format("woff"), url("//db.onlinewebfonts.com/t/30d45238271619dd88774064114b9a05.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/30d45238271619dd88774064114b9a05.svg#Cosi Times Roman") format("svg"); }
 
 
+
+.wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: #000;
+  z-index: 2;
+}
+
+
+
 h1{
     //font-family: 'Cormorant Garamond', serif;
     font-family: "Cosi Times Roman";
