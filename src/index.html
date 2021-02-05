@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -37,12 +38,8 @@
             <p> - twoja lista książek</p>
           </div>
             <p class="subtitle-2"> - dodaj do <span>kolekcji</span> <i class="fas fa-arrow-down"></i> </a></p>
-          
-
           <div class="block">
-
           </div>
-          
         </div>
         <div class="col-auto col1">
           <img class = "img-1" src="./img/books-img-1.jpg">
@@ -51,7 +48,6 @@
 
       
       <div class="row page1">
-
     <h1 class="text-center collection" data-wow-duration="2s" data-wow-delay="1s">Kolekcja</h1>
         
     <form id="book-form">
@@ -87,40 +83,6 @@
             <button type="button" class="btn add-genre btn " onclick="insertValue();">Dodaj kategorie</input>
           </div>
         </div>
-
-
-
-
-
-
-
-        
-        <script>
-            
-            //adding option to select genre
-            function insertValue()
-            {
-                var select = document.getElementById("genre"), 
-                    txtVal = document.getElementById("val").value,
-                    newOption = document.createElement("OPTION"),
-                    newOptionVal = document.createTextNode(txtVal);
-             
-                newOption.appendChild(newOptionVal);
-                select.insertBefore(newOption,select.lastChild);
-            }
-            
-        </script>
-
-
-
-
-
-
-
-
-
-
-
       </div>
 
       <div class="form-group mx-sm-3 mb-2">
@@ -186,129 +148,91 @@
          <div>W danej kategorii: </div><div id= 'couter-cat'></div>
       
          </div>
-
-       
-
-
-
-
-
-
-
-
-      <script>
-        //updating number of books added to the list
-        var drawCounter = function () {
-        document.getElementById('counter').innerHTML = store.counter
-        }
-
-        //stored value, number of books
-        var store = {
-          counter: 0  
-        }
-
-        //incrementing stored books dynamically onces they are added
-        var increase = function () {
-          store.counter++
-        }
-
-        //decrmenting stored books dynamically onces they are removed
-        var decrease = function () {
-          store.counter--
-        }
-
-        //update the number
-        var init = function () {
-          bindEvents()
-          drawCounter()  
-        }
-
-        init()
-
-      </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </div>
   </div>
+    </div>
+  <div class="footer">
+  <div class="row">
+    <div class="col autor emp">
+      <p>Autor projektu. </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col autor name">
+      <p>Justyna Bućko</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col autor web">
+      <p>http://justyna-bucko.pl/</p>
+    </div>
+  </div>
+  </div>
   
+  </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+
+      </div>
+
+    </div>
+
+  </div>
+
+<script type="text/javascript" src="js/index.min.js"></script>
+<script>
+            
+  //adding option to select genre
+  function insertValue()
+  {
+      var select = document.getElementById("genre"), 
+          txtVal = document.getElementById("val").value,
+          newOption = document.createElement("OPTION"),
+          newOptionVal = document.createTextNode(txtVal);
+   
+      newOption.appendChild(newOptionVal);
+      select.insertBefore(newOption,select.lastChild);
+  }
   
+</script>
 
 
 
+<script>
+  //updating number of books added to the list
+  var drawCounter = function () {
+  document.getElementById('counter').innerHTML = store.counter
+  }
+
+  //stored value, number of books
+  var store = {
+    counter: 0  
+  }
+
+  //incrementing stored books dynamically onces they are added
+  var increase = function () {
+    store.counter++
+  }
+
+  //decrmenting stored books dynamically onces they are removed
+  var decrease = function () {
+    store.counter--
+  }
+
+  //update the number
+  var init = function () {
+    bindEvents()
+    drawCounter()  
+  }
+
+  init()
+
+</script>
 
 
-
-  
-  <script>
-
-    
-    // filter table
-    
-    (function () {
-      // eslint-disable-next-line wrap-iife
-      const TableFilter = (function () {
-        const Arr = Array.prototype;
-        let input;
-    
-        function onInputEvent(e) {
-          input = e.target;
-          const table1 = document.getElementsByClassName(input.getAttribute('data-table'));
-          Arr.forEach.call(table1, (table) => {
-            Arr.forEach.call(table.tBodies, (tbody) => {
-              Arr.forEach.call(tbody.rows, filter);
-            });
-          });
-        }
-    
-        function filter(row) {
-          const text = row.textContent.toLowerCase();
-          // console.log(text);
-          const val = input.value.toLowerCase();
-          // console.log(val);
-          row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-        }
-    
-        return {
-          // eslint-disable-next-line object-shorthand
-          init: function () {
-            const inputs = document.getElementsByClassName('table-filter');
-            Arr.forEach.call(inputs, (input) => {
-              input.oninput = onInputEvent;
-            });
-          },
-        };
-      })();
-    
-      TableFilter.init();
-      // eslint-disable-next-line prettier/prettier
-    }());
-    </script>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  <script>
+ 
+<script>
+  (function(){
   
   th = document.getElementsByTagName('th');
   
@@ -359,339 +283,50 @@
       }
     }
   }
+}())
     </script>
 
 
-
-
-
-
-
-
-
-
+<script type="text/javascript">
   
-    </div>
-  <div class="footer">
-  <div class="row">
-    <div class="col autor emp">
-      <p>Autor projektu. </p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col autor name">
-      <p>Justyna Bućko</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col autor web">
-      <p>http://justyna-bucko.pl/</p>
-    </div>
-  </div>
-  </div>
-  
-  </div>
+  function Export() {
 
-  
-  <script src="script.js"></script>
-
-
-
-
-
-
-
-
-    <script>
-      //drag & drop sort
-      let dragItem = document.getElementById("book-list");
-      new Sortable(dragItem,{
-      handle:'.handle',
-      animation:300
-  })
-    </script>
-
-
-
-
-
-
-
-
-
-  
-
-   
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-    
-    
-    <script type="text/javascript">
-  
-        function Export() {
-
-          //create pdf
-            html2canvas(document.getElementById('table'), {
-                onrendered: function (canvas) {
-                    var data = canvas.toDataURL();
-                    var docDefinition = {
-                        content: [{
-                            image: data,
-                            width:500,
-                        }]
-                    };
-                    pdfMake.createPdf(docDefinition).download("Table.pdf");
-                }
-            });
-        }
-  
-        function Print() {
-            html2canvas(document.getElementById('table'), {
-                onrendered: function (canvas) {
-                    var data = canvas.toDataURL();
-                    var docDefinition = {
-                        content: [{
-                            image: data,
-                            width:500,
-                        }]
-                    };
-                    pdfMake.createPdf(docDefinition).print("Table.pdf");
-                }
-            });
-        }
-    </script>
-
-
-
-
-
-
-        
-     
-
-
-
-
-      </div>
-
-    </div>
-
-  </div>
-  
-
-
-
-
-  <script>
-
-    // Book Class: Represents a Book
-class Book {
-  constructor(title, author,genre,priority) {
-    this.title = title;
-    this.author = author;
-    this.genre = genre;
-    this.priority = priority;
-  }
-}
-
-// UI Class: Handle UI Tasks
-class UI {
-
-  
-  static displayBooks() {
-    const books = Store.getBooks();
-    books.forEach((book) => UI.addBookToList(book));
+    //create pdf
+      html2canvas(document.getElementById('table'), {
+          onrendered: function (canvas) {
+              var data = canvas.toDataURL();
+              var docDefinition = {
+                  content: [{
+                      image: data,
+                      width:500,
+                  }]
+              };
+              pdfMake.createPdf(docDefinition).download("Table.pdf");
+          }
+      });
   }
 
-  static updateCount() {
-    const books = Store.getBooks();
-
-    //update genre count
-    var table = document.getElementById("book-list"); //ur table id
-    var rows = table.getElementsByTagName("tr");
-    var output = [];
-      for(var i=0;i<rows.length;i++)
-        {
-        output.push(rows[i].getElementsByTagName("td")[2].innerHTML);//instead of 1 pass column index
-        var count = {};
-        output.forEach(function(i) { count[i] = (count[i]||0) + 1;});      
-        }
-
-        if (output.length > 0){
-
-        const list1 = document.querySelector('#book-list-1');
-        const row1 = document.querySelector('#book-list-1');
-         var count1 = JSON.stringify(count);
-         var count2 = count1.replace(/"/g, '');
-         var count3 = count2.replace(/}/g, '')
-         var count4 = count3.replace(/{/g, '')
-
-        row1.innerHTML = `
-        <div class = "category-counter">${count4}</div>
-        `;
-
-        
-        list1.parentNode.appendChild(row1); 
-        }
-        else{
-          
-        const list2 = document.querySelector('#book-list-1');
-        const row2 = document.querySelector('#book-list-1');
-        row2.innerHTML = `
-        <div class = "category-counter"><p>Brak książek w kolekcji</p></div>
-        `;
-
-        
-        list2.parentNode.appendChild(row2); 
-        }    
+  function Print() {
+      html2canvas(document.getElementById('table'), {
+          onrendered: function (canvas) {
+              var data = canvas.toDataURL();
+              var docDefinition = {
+                  content: [{
+                      image: data,
+                      width:500,
+                  }]
+              };
+              pdfMake.createPdf(docDefinition).print("Table.pdf");
+          }
+      });
   }
-
-
-  static addBookToList(book) {
-    const books = Store.getBooks();
-    const list = document.querySelector('#book-list');
-    const row = document.createElement('tr');
-    row.className = 'handle';
-
-    row.innerHTML = `
-      <td class="title-data edit-title"><i style = "padding: 0px 20px" class="fa fa-bars bars"></i>${book.title}</td>
-      <td>${book.author}</td>
-      <td>${book.genre}</td>
-      <td>${book.priority}</td>
-      <td><a href="#" class="btn btn-danger btn-sm delete">X</a></td>
-    `;
-    list.appendChild(row);
-
-
-    increase();
-    drawCounter();
-  }
-
-  static deleteBook(el) {
-    if(el.classList.contains('delete')) {
-      el.parentElement.parentElement.remove();
-      decrease();
-      drawCounter();
-    }
-  }
-
-
-
-
-
-  static showAlert(message, className) {
-    const div = document.createElement('div');
-    div.className = `alert alert-${className}`;
-    div.appendChild(document.createTextNode(message));
-    const container = document.querySelector('.page1');
-    const form = document.querySelector('#book-form');
-    container.insertBefore(div, form);
-
-    // Vanish in 3 seconds
-    setTimeout(() => document.querySelector('.alert').remove(), 3000);
-  }
-
-  static clearFields() {
-    document.querySelector('#title').value = '';
-    document.querySelector('#author').value = '';
-    document.querySelector('#genre').value = '';
-    document.querySelector('#priority').value = '';
-  }
-}
-
-// Store Class: Handles Storage
-class Store {
-  static getBooks() {
-    let books;
-    if(localStorage.getItem('books') === null) {
-      books = [];
-    } else {
-      books = JSON.parse(localStorage.getItem('books'));
-    }
-
-    return books;
-  }
-
-  static addBook(book) {
-    const books = Store.getBooks();
-    books.push(book);
-    localStorage.setItem('books', JSON.stringify(books));
-  }
-
-  static removeBook(priority) {
-    const books = Store.getBooks();
-
-    books.forEach((book, index) => {
-      if(book.priority === priority) {
-        books.splice(index, 1);
-      }
-    });
-
-    localStorage.setItem('books', JSON.stringify(books));
-  }
-}
-
-// Event: Display Books
-document.addEventListener('DOMContentLoaded', UI.displayBooks);
-document.addEventListener('DOMContentLoaded', UI.updateCount);
-
-// Event: Add a Book
-document.querySelector('#book-form').addEventListener('submit', (e) => {
-  // Prevent actual submit
-  e.preventDefault();
-
-  // Get form values
-  const title = document.querySelector('#title').value;
-  const author = document.querySelector('#author').value;
-  const genre = document.querySelector('#genre').value;
-  const priority = document.querySelector('#priority').value;
-
-  // Validate
-  if(title === '' || author === ''  || genre === ''  || priority === '') {
-    UI.showAlert('Wypełnij wszystkie pola, aby dodać książkę.', 'danger');
-  } else {
-    // Instatiate book
-    const book = new Book(title, author, genre, priority);
-
-    // Add Book to UI
-    UI.addBookToList(book);
-
-    // Add book to store
-    Store.addBook(book);
-    UI.updateCount();
-    // Show success message
-    UI.showAlert('Książka dodana.', 'success');
-
-    // Clear fields
-    UI.clearFields();
-  }
-});
-
-// Event: Remove a Book
-document.querySelector('#book-list').addEventListener('click', (e) => {
-  // Remove book from UI
-  UI.deleteBook(e.target);
-  UI.updateCount();
-  // Remove book from store
-  Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
-  // Show success message
-  UI.showAlert('Książka usunięta.', 'success');
-});
-
 </script>
-
-
-
-
-
-
-
-
-
 </body>
 
 <!-- Custom scripts -->
 
 <script type="text/javascript"></script>
 
+
 </html>
+
