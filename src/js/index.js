@@ -120,7 +120,7 @@ class UI {
     const author = document.querySelector('#author').value;
     const genre = document.querySelector('#genre').value;
     const priority = document.querySelector('#priority').value;
-    setTimeout(() => emptyRow.remove(), 3000);
+    setTimeout(() => emptyRow.remove(), 6000);
   }
 
   static showAlert(message, className) {
@@ -133,6 +133,13 @@ class UI {
 
     // Vanish in 3 seconds
     setTimeout(() => document.querySelector('.alert').remove(), 3000);
+  }
+
+  static clearFields() {
+    document.querySelector('#title').value = '';
+    document.querySelector('#author').value = '';
+    document.querySelector('#genre').value = '';
+    document.querySelector('#priority').value = '';
   }
 }
 
@@ -247,8 +254,8 @@ document.querySelector('#book-list').addEventListener('click', (e) => {
 document.querySelector('#book-list').addEventListener('click', (e) => {
   // Remove book from UI
   UI.editBook(e.target);
-  UI.fillFields(e);
   UI.updateCount();
+  UI.clearFields();
   // Remove book from store
   // Show success message
 });
