@@ -21,6 +21,7 @@
   <!-- Main css file -->
   <link rel="stylesheet" href="css/index.min.css" />
   <!-- Custom styles -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
 </head>
 
 <body>
@@ -32,7 +33,7 @@
       <div class="row">
         <div class="col col0">
           <div class="header">
-            <h1>Biblioteka </h1>
+            <h1 class="header-title">Biblioteka </h1>
           </div>
           <div class="subtitle">
             <p> - twoja lista książek</p>
@@ -99,6 +100,7 @@
 
       <div class="row">
         <input type="submit" value="Dodaj" class="btn add mx-auto mt-3">
+        <input id ="editButton"type="submit" value="Edytuj" class="btn add mx-auto mt-3">
       
       </div>
 
@@ -119,6 +121,7 @@
                   <th>Autor <i class="fas fa-sort"></i> </th>
                   <th>Kategoria <i class="fas fa-sort"></i> </th>
                   <th>Priorytet <i class="fas fa-sort"></i> </th>
+                  <th>Edytuj</th>
                   <th>Usuń</th>
               </tr>
           </thead>
@@ -180,6 +183,22 @@
   </div>
 
 <script type="text/javascript" src="js/index.min.js"></script>
+<script>
+  
+
+  var tl = new TimelineMax();
+
+tl.from(".subtitle", 0.6, {
+    opacity:0,
+    ease: Expo.easeInOut,
+});
+
+tl.from(".subtitle-2", 0.6, {
+    opacity:0,
+    ease: Expo.easeInOut,
+});
+
+</script>
 <script>
             
   //adding option to select genre
