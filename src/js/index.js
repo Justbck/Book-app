@@ -1,63 +1,25 @@
+/* eslint-disable vars-on-top */
+/* eslint-disable no-var */
+/* eslint-disable no-loop-func */
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
 /* eslint-disable no-tabs */
 // eslint-disable-next-line max-classes-per-file
 import * as mdb from 'mdb-ui-kit';
+import filter from './filter';
+import drag from './drag';
+import Book from './book';
 
 export default {
   mdb,
 };
 
-class Book {
-  constructor(title, author, genre, priority) {
-    this.title = title;
-    this.author = author;
-    this.genre = genre;
-    this.priority = priority;
-  }
-}
+filter();
+drag();
 
-// filter table
+// Book Class: Represents a Book
 
-(function () {
-  // eslint-disable-next-line wrap-iife
-  const TableFilter = (function () {
-    const Arr = Array.prototype;
-    let input;
-
-    function onInputEvent(e) {
-      input = e.target;
-      const table1 = document.getElementsByClassName(input.getAttribute('data-table'));
-      Arr.forEach.call(table1, (table) => {
-        Arr.forEach.call(table.tBodies, (tbody) => {
-          Arr.forEach.call(tbody.rows, filter);
-        });
-      });
-    }
-
-    function filter(row) {
-      const text = row.textContent.toLowerCase();
-      // console.log(text);
-      const val = input.value.toLowerCase();
-      // console.log(val);
-      row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-    }
-
-    return {
-      // eslint-disable-next-line object-shorthand
-      init: function () {
-        const inputs = document.getElementsByClassName('table-filter');
-        Arr.forEach.call(inputs, (input) => {
-          input.oninput = onInputEvent;
-        });
-      },
-    };
-  })();
-
-  TableFilter.init();
-  // eslint-disable-next-line prettier/prettier
-}());
-
-// UI class: Handle UI Tasks - display changes/alerts
-
+// UI Class: Handle UI Tasks
 class UI {
   static displayBooks() {
     const books = Store.getBooks();
@@ -65,42 +27,67 @@ class UI {
   }
 
   static updateCount() {
-    const books = Store.getBooks();
-    const list = document.querySelector('#counter');
-    const row = document.createElement('tr');
+    // update genre count
+    const table = document.getElementById('book-list'); // ur table id
+    const rows = table.getElementsByTagName('tr');
+    const output = [];
+    for (let i = 0; i < rows.length; i++) {
+      output.push(rows[i].getElementsByTagName('td')[2].innerHTML); // instead of 1 pass column index
+      var count = {};
+      output.forEach((i) => {
+        count[i] = (count[i] || 0) + 1;
+      });
+    }
 
-    row.innerHTML = `
-      <td>Liczba książek: ${books.length}</td>
-      `;
+    if (output.length > 0) {
+      const list1 = document.querySelector('#book-list-1');
+      const row1 = document.querySelector('#book-list-1');
+      // eslint-disable-next-line block-scoped-var
+      const count1 = JSON.stringify(count);
+      const count2 = count1.replace(/"/g, '');
+      const count3 = count2.replace(/}/g, '');
+      const count4 = count3.replace(/{/g, '');
 
-    list.replaceWith(row);
+      row1.innerHTML = `
+          <div class = "category-counter">${count4}</div>
+          `;
+
+      list1.parentNode.appendChild(row1);
+    } else {
+      const list2 = document.querySelector('#book-list-1');
+      const row2 = document.querySelector('#book-list-1');
+      row2.innerHTML = `
+          <div class = "category-counter"><p>Brak książek w kolekcji</p></div>
+          `;
+
+      list2.parentNode.appendChild(row2);
+    }
   }
-  // adding books
 
   static addBookToList(book) {
+    const books = Store.getBooks();
     const list = document.querySelector('#book-list');
     const row = document.createElement('tr');
     row.className = 'handle';
 
     row.innerHTML = `
-      
-      <td class="title-data"><i style = "padding: 0px 20px" class="fa fa-bars bars"></i>${book.title}</td>
-      <td class="author">${book.author}</td>
-      <td class="genre">${book.genre}</td>
-      <td class="priority">${book.priority}</td>
-      <td><a href="#" class="btn btn-edit btn-sm edit"><i class="far fa-edit"></i></a></td>
-      <td><a href="#" class="btn btn-save btn-sm save"><i class="fas fa-check"></i></a></td>
-      <td><a id="delete" href="#" class="btn btn-delete danger btn-sm delete"><i class="fas fa-times"></i></a></td>
+        <td class="title-data edit-title"><i style = "padding: 0px 20px" class="fa fa-bars bars"></i>${book.title}</td>
+        <td>${book.author}</td>
+        <td>${book.genre}</td>
+        <td>${book.priority}</td>
+        <td><a href="#" class="btn btn-danger btn-sm delete">X</a></td>
       `;
-
     list.appendChild(row);
+
+    increase();
+    drawCounter();
   }
 
-  // we gat to ensure that what is clicked has the delete class --- using if statement
-  // we make sure what is clicked contain the class delete
   static deleteBook(el) {
     if (el.classList.contains('delete')) {
       el.parentElement.parentElement.remove();
+      decrease();
+      drawCounter();
     }
   }
 
@@ -108,12 +95,12 @@ class UI {
     const div = document.createElement('div');
     div.className = `alert alert-${className}`;
     div.appendChild(document.createTextNode(message));
-    const container = document.querySelector('.container');
+    const container = document.querySelector('.page1');
     const form = document.querySelector('#book-form');
     container.insertBefore(div, form);
 
-    // Vanish in 2 seconds
-    setTimeout(() => document.querySelector('.alert').remove(), 2000);
+    // Vanish in 3 seconds
+    setTimeout(() => document.querySelector('.alert').remove(), 3000);
   }
 
   static clearFields() {
@@ -124,9 +111,7 @@ class UI {
   }
 }
 
-// made it static so we dont have to instansiate the store class
 // Store Class: Handles Storage
-
 class Store {
   static getBooks() {
     let books;
@@ -135,6 +120,7 @@ class Store {
     } else {
       books = JSON.parse(localStorage.getItem('books'));
     }
+
     return books;
   }
 
@@ -144,58 +130,62 @@ class Store {
     localStorage.setItem('books', JSON.stringify(books));
   }
 
-  static removeBook(title) {
+  static removeBook(priority) {
     const books = Store.getBooks();
+
     books.forEach((book, index) => {
-      if (book.title === title) {
+      if (book.priority === priority) {
         books.splice(index, 1);
       }
     });
+
     localStorage.setItem('books', JSON.stringify(books));
   }
 }
 
-// NOTE: you can't store object in local storage it has to be a string - so we stringify our object bfr sending to local storage & parse it when pulling it out;
-
 // Event: Display Books
 document.addEventListener('DOMContentLoaded', UI.displayBooks);
+document.addEventListener('DOMContentLoaded', UI.updateCount);
 
-// Event: Add a book
+// Event: Add a Book
 document.querySelector('#book-form').addEventListener('submit', (e) => {
-  // prevent actual submit
+  // Prevent actual submit
   e.preventDefault();
 
-  // get form values
+  // Get form values
   const title = document.querySelector('#title').value;
   const author = document.querySelector('#author').value;
   const genre = document.querySelector('#genre').value;
   const priority = document.querySelector('#priority').value;
 
-  // Validation
-  if (title === ' ' || author === ' ' || genre === '' || priority === ' ') {
-    UI.showAlert('Wypełnij wszystkie pola, aby dodać książke.', 'danger');
+  // Validate
+  if (title === '' || author === '' || genre === '' || priority === '') {
+    UI.showAlert('Wypełnij wszystkie pola, aby dodać książkę.', 'danger');
   } else {
-    // instiantiate book
+    // Instatiate book
     const book = new Book(title, author, genre, priority);
 
-    // add book to UI
+    // Add Book to UI
     UI.addBookToList(book);
 
-    // add books to store
+    // Add book to store
     Store.addBook(book);
     UI.updateCount();
+    // Show success message
     UI.showAlert('Książka dodana.', 'success');
 
-    // this method clear fields
+    // Clear fields
     UI.clearFields();
   }
 });
 
-// Events: Remove a Book
-// we need to use event propagation
-
+// Event: Remove a Book
 document.querySelector('#book-list').addEventListener('click', (e) => {
+  // Remove book from UI
   UI.deleteBook(e.target);
-  // Remove book from Store
+  UI.updateCount();
+  // Remove book from store
   Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
+  // Show success message
+  UI.showAlert('Książka usunięta.', 'success');
 });
